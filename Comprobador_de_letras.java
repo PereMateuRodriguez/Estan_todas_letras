@@ -1,38 +1,34 @@
 public class Main {
   public static void main(String[] args) {
-    
-    String sentence =  "a b c d e f g h i j k l m n ñ o p q r s t u v w x y z";
-    String sen = sentence.toLowerCase();
-    sen = sen.replaceAll(" ", "");
+    String sentence = "La frase tiene a b c";
+    String busco = "abcdefghijklmnñopqrstuvwxyz";
     
     
+    //Le quitamos al String todo lo que nos molestara (caracteres mayusculas, numero o espacios)
+    sentence = sentence.replaceAll(" ", "");
     String charsToRemove = "<>^ª!·$%&/()=?¿@#~€¬`+^`´{},.-;:_0123456789*º[]\\";
  
-        for (char c : charsToRemove.toCharArray()) {
-            sen = sen.replace(String.valueOf(c), "");
-        }
+    for (char c : charsToRemove.toCharArray()) {
+      sentence = sentence.replace(String.valueOf(c), "");
+    }
+    sentence = sentence.toLowerCase();
+    
+    //Motor de busqueda y comprobador de letras
     int con = 0;
-    String lista = "a b c d e f g h i j k l m n ñ o p q r s t u v w x y z";
-    lista = lista.replaceAll(" ", "");
-    for (int i =0; i < sen.length(); i++){
-    
-    	for (int j = 0; j < lista.length(); j++){
-        	if (sen.charAt(i) == lista.charAt(j)){
-            	con++;
-            }
-            else{
-            	con--;
-            }
+   	for (int i = 0; i < busco.length(); i++){
+    	
+    	for (int j = 0; j < sentence.length(); j++){
+          if(busco.charAt(i) == sentence.charAt(j)){
+          	con++;
+            break;
+          }  
         }
     }
-    
-    if (con != sen.length()){
-    	System.out.println("es igual");
-    }
-    else{
-    	System.out.println("es diferente");
-    
-    }
-    
+   if (con == busco.length()){
+   		System.out.println("Tiene todo el abecedario!");
+   }
+   else{
+   		System.out.println("NO TIENE todo el abecedario!");
+   }
   }
 }
